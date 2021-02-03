@@ -1,0 +1,43 @@
+/* Universal Reset for All Elements and Pseudo-Elements  */
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    /* inherits the box-size from body{...} */
+    box-sizing: inherit;
+}
+
+
+
+html {   
+    // % Allows the User to set their own client side font-size for a11y
+    font-size: 62.5%; /* Set ROOT font-size => 1rem == 10px */
+    
+    @include respond(tablet-lg) { 
+        // is the width < 900px?
+        font-size: 56.25%; // 1 rem = 9px
+    }
+    @include respond(tablet-sm) {
+        font-size: 50%;  // 1 rem = 8px
+    }
+    // Note: this is a min-width query
+    @include respond(desktop-lg) {
+        font-size: 75%; // 1rem = 12px (12 / 16px)
+    }     
+}
+
+body {
+    /* not inherited */
+    padding: 3rem;
+    box-sizing: border-box; /* inherited */
+
+    @include respond(tablet-sm) {
+        padding: 0;
+    }
+}
+
+::selection {
+    background-color: $color-primary;
+    color: $color-white;
+}

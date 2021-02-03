@@ -1,0 +1,56 @@
+.row {
+    max-width: $grid-width; // 1140 px
+    margin: 0 auto;
+
+    &:not(:last-child) {
+        margin-bottom: $gutter-vertical;
+
+        @include respond(tablet-sm) {
+            margin-bottom: $gutter-vertical-sm; 
+        }        
+    }
+
+    @include respond(tablet-md) {
+        max-width: 90%;
+    }
+    
+    @include clearfix;
+
+    // selects all of the elements whose class attribute starts with 'col-'
+    [class^="col-"] {
+        float: left;
+
+        &:not(:last-child) {
+            margin-right: $gutter-horizontal;
+
+            @include respond(tablet-sm) {
+                margin-right: 0;
+                margin-bottom: $gutter-vertical-sm;
+            }
+        }
+
+        @include respond(tablet-sm) {
+            width: 100% !important;
+        }   
+    }
+
+    .col-1-of-2 {
+        @include colwidth(1, 2)
+    }
+    .col-1-of-3 {
+        @include colwidth(1, 3);
+    }
+    .col-2-of-3 {
+        @include colwidth(2, 3);
+    }
+    .col-1-of-4 {
+        @include colwidth(1, 4);
+    }
+    .col-2-of-4 {
+        @include colwidth(2, 4);
+    }
+    .col-3-of-4 {
+        @include colwidth(3, 4);
+    }
+    
+}
