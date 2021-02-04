@@ -1,0 +1,74 @@
+@mixin clearfix {
+    // appends a empty pseudoelement to the end of a floated element to give it a break
+    &::after {
+        content: "";
+        display: table;
+        clear: both; // clears both left and right
+    }
+}
+
+/**
+ *  gives the width of the columns given two params
+ * $taken: the amount of columns of $total that the space takes
+ * $total: the amount of columns in that row
+ * I am proud of this butttt I wonder how slow it is
+ */
+@mixin colwidth($taken, $total) {
+    width: calc(
+        ((100% - (#{$gutter-horizontal} * (#{$total} - 1))) / #{$total}) * 
+        (#{$taken}) + (#{$gutter-horizontal} * (#{$taken} - 1))
+    );
+}
+
+/**
+ * Centers an element with absolute positioning
+ * Parent has to be position: relative
+ */
+@mixin absolute-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/**
+ * This will manage some media queries for us
+ * 0 - 600px => Phone
+ * 600px - 900px => Table Portrait
+ * 900px - 1200px => Tablet Landscape
+ * 1200px - 1800px => Normal Styling
+ * 1800px - onward => Big Desktops
+ * 
+ * Choices for the $breakpoint
+ * - phone
+ * - tablet-sm
+ * - tablet-lg
+ * - desktop-lg
+ *
+ * Not using em bc apparently rem doesn't work in a lot of browsers
+ *
+ * ORDER OF MAKING IT RESPONSIVE
+ *       > Base + typography
+ *           > layout
+ *               > components
+ *
+ * However, most of the responsiveness is caused by changing the default font-size in _base
+ */
+@mixin respond($breakpoint) {
+    @if $breakpoint == phone {
+        @media only screen and (max-width: 37.5em) { @content }; // 600px
+    }
+    @if $breakpoint == tablet-sm {
+        @media only screen and (max-width: 56.25em) { @content }; // 900px
+    }
+    @if $breakpoint == tablet-md {
+        @media only screen and (max-width: 68.75em) { @content }; // 1100px
+    }
+    @if $breakpoint == tablet-lg {
+        @media only screen and (max-width: 78.125em) { @content }; // 1250px
+    }
+    // MIN WIDTH QUERY
+    @if $breakpoint == desktop-lg {
+        @media only screen and (min-width: 112.5em) { @content }; // 1800px
+    }
+}

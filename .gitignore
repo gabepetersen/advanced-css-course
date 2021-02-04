@@ -1,0 +1,10 @@
+# this should take care of all nested node_module files too
+node_modules/
+
+# ignore final code
+Natours/after-S05/
+Natours/final-after-S06/
+
+Nexter/final/
+
+Trillo/final/
