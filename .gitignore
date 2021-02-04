@@ -1,5 +1,8 @@
 # this should take care of all nested node_module files too
-node_modules/
+Natours/starter/node_modules/
+Nexter/starter/node_modules/
+Trillo/starter/node_modules/
+*/node_modules/
 
 # ignore final code
 Natours/after-S05/
